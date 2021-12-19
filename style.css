@@ -1,0 +1,175 @@
+* {
+    box-sizing: border-box;
+}
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url("./fonts/Poppins-Bold.ttf");
+}
+@font-face {
+    font-family: 'Poppins-regular';
+    src: url("./fonts/Poppins-Regular.ttf");
+}
+@font-face {
+    font-family: 'Poppins-semiBold';
+    src: url("./fonts/Poppins-SemiBold.ttf");
+}
+body {
+    background-color: #141414 !important;
+}
+.board-container {
+    max-width: 500px;
+    padding: 0 30px;
+    margin: 100px auto;
+}
+.field {
+    margin-bottom: 20px;
+}
+.field label {
+    color: #fff;
+}
+select {
+    padding: 5px;
+    background: transparent;
+    color: white;
+    border: none;
+    font-family: 'Poppins-regular';
+}
+select::after {
+    color: white;
+}
+label {
+    font-family: 'Poppins-semiBold';
+}
+#newGame {
+    padding: 8px;
+    background: none;
+    border: none;
+    color: #fefc09;
+    padding-left: 0px;
+    font-size: 18px;
+    cursor: pointer;
+    font-family: 'Poppins-semiBold';
+}
+option {
+    background: #181818;
+    color: #fff;
+    text-shadow: 0 1px 0 #181818;
+    border: none;
+}
+h1 {
+    text-align: center;
+    color: white;
+    font-family: 'Poppins-Bold';
+}
+#board {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+    margin-bottom: 30px;
+}
+#board .cells-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+#board [class^="cell-"] {
+    height: 33.3333333%;
+    width: 33.3333333%;
+    border: 2px solid #141414;
+    background: #181818;
+    position: relative;
+    cursor: pointer;
+    color: #fff;
+    font-size: calc(18px + 5vw);
+    font-family: 'Poppins-semiBold';
+}
+
+#board [class^="cell-"].x,
+#board [class^="cell-"].o {
+    cursor: not-allowed;
+}
+#board [class^="cell-"].x:after {
+    content: "X";
+}
+#board [class^="cell-"].o:after {
+    content: "O";
+}
+
+#board:after {
+    content: "";
+    position: absolute;
+    background-color: #fefc09;
+    transition: 0.7s;
+}
+
+/* Horizontal Lines */
+#board[class^="h-"]:after {
+    width: 0%;
+    height: 3px;
+    left: 0;
+    transform: width translateY(-50%);
+}
+#board.fullLine[class^="h-"]:after {
+    width: 100%;
+}
+#board.h-1:after {
+    top: 16.6666666665%;
+}
+#board.h-2:after {
+    top: 50%;
+}
+#board.h-3:after {
+    top: 83.33333333%;
+}
+
+/* Vertical Lines */
+#board[class^="v-"]:after {
+    width: 3px;
+    height: 0%;
+    top: 0;
+    transform: height translateX(-50%);
+}
+#board.fullLine[class^="v-"]:after {
+    height: 100%;
+}
+#board.v-1:after {
+    left: 16.6666666665%;
+}
+#board.v-2:after {
+    left: 50%;
+}
+#board.v-3:after {
+    left: 83.33333333%;
+}
+
+/* Diagonal Lines */
+#board[class^="d-main"]:after {
+    width: 3px;
+    height: 0%;
+    left: 0;
+    top: 0;
+    transform: rotateZ(-45deg);
+    transform-origin: 50% 0;
+    transition: height 0.7s;
+}
+#board.fullLine[class^="d-main"]:after {
+    height: 140%;
+}
+
+#board[class^="d-counter"]:after {
+    height: 0%;
+    width: 3px;
+    right: 0;
+    top: 0;
+    transform: rotateZ(45deg);
+    transform-origin: 50% 0;
+    transition: height 0.7s;
+}
+#board.fullLine[class^="d-counter"]:after {
+    height: 140%;
+}
